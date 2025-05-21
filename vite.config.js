@@ -198,3 +198,10 @@ export default defineConfig({
 		},
 	},
 });
+export default defineConfig({
+  base: '/',
+  build: {
+    outDir: 'docs'  // This tells Vite to create a folder named docs
+  },
+  plugins: [react()]
+})

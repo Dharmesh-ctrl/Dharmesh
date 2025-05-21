@@ -1,0 +1,82 @@
+import React from 'react';
+import { motion } from 'framer-motion';
+import { Button } from "@/components/ui/button";
+import { ChevronUp, CalendarDays } from "lucide-react";
+
+const HeroSection = ({ scrollToSection, name, title, summary, profileImage, calendlyLink }) => {
+  return (
+    <section id="home" className="relative min-h-screen flex items-center gradient-bg tech-pattern pt-20">
+      <div className="container mx-auto px-4 py-20">
+        <div className="flex flex-col md:flex-row items-center justify-between">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="md:w-1/2 text-center md:text-left mb-10 md:mb-0"
+          >
+            <h1 className="text-4xl md:text-6xl font-extrabold text-Blue drop-shadow-md mb-4">
+              {name}
+            </h1>
+            <h2 className="text-xl md:text-2xl text-blue-800 font-semibold mb-6">
+              {title}
+            </h2>
+            <p className="text-base md:text-lg text-gray-900 leading-relaxed max-w-xl mx-auto md:mx-0 mb-8">
+              {summary}
+            </p>
+            <div className="flex flex-wrap gap-3 justify-center md:justify-start">
+              <Button onClick={() => scrollToSection("contact")} size="lg">
+                Contact Me
+              </Button>
+              <Button 
+                variant="outline"
+                onClick={() => scrollToSection("experience")}
+                size="lg"
+                className="bg-indigo-500 hover:bg-indigo-600 text-white" 
+              >
+                View Experience
+              </Button>
+              {calendlyLink && (
+                <Button asChild size="lg" variant="secondary" className="bg-green-500 hover:bg-green-600 text-white">
+                  <a href={calendlyLink} target="_blank" rel="noopener noreferrer">
+                    <CalendarDays className="mr-2 h-5 w-5" /> Free Consultation
+                  </a>
+                </Button>
+              )}
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8 }}
+            className="md:w-1/2 flex justify-center"
+          >
+            <div className="relative">
+              <div className="absolute inset-0 bg-primary/20 rounded-full blur-3xl animate-pulse-slow"></div>
+              <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-white/30 shadow-2xl animate-float">
+                <img
+                  src={profileImage}
+                  alt={name}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </div>
+
+      <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+        <Button
+          variant="ghost"
+          size="sm"
+          className="rounded-full bg-white/10 text-white hover:bg-white/20"
+          onClick={() => scrollToSection("about")}
+        >
+          <ChevronUp className="h-5 w-5 rotate-180" />
+        </Button>
+      </div>
+    </section>
+  );
+};
+
+export default HeroSection;

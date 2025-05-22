@@ -57,7 +57,8 @@ logger.error = (msg, options) => {
 
 // ✅ Final merged config
 export default defineConfig({
-  base: '/',
+  base: '/Dharmesh/',
+
   build: {
     outDir: 'docs',
   },
